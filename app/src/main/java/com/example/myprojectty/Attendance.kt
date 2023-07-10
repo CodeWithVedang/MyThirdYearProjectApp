@@ -112,7 +112,59 @@ class Attendance : AppCompatActivity() {
 
         }
 
+        Spinnerrrr = findViewById(R.id.subjectSpinner)
+        db = FirebaseFirestore.getInstance()
 
+        // Get the data from Firestore
+        db.collection("subject").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val subject = mutableListOf<String>()
+                    for (document in task.result) {
+                        subject.add(document.get("Paper1").toString())
+                        subject.add(document.get("Paper2").toString())
+                        subject.add(document.get("Paper3").toString())
+                        subject.add(document.get("Paper4").toString())
+                        subject.add(document.get("Paper5").toString())
+                        subject.add(document.get("Paper6").toString())
+                        subject.add(document.get("Paper7").toString())
+                        subject.add(document.get("Paper8").toString())
+                        subject.add(document.get("Paper9").toString())
+                        subject.add(document.get("Paper10").toString())
+                        subject.add(document.get("Paper11").toString())
+                        subject.add(document.get("Paper12").toString())
+                        subject.add(document.get("Paper13").toString())
+                        subject.add(document.get("Paper14").toString())
+                        subject.add(document.get("Paper15").toString())
+                        subject.add(document.get("Paper16").toString())
+                        subject.add(document.get("Paper17").toString())
+                        subject.add(document.get("Paper18").toString())
+                        subject.add(document.get("Paper19").toString())
+                        subject.add(document.get("Paper20").toString())
+
+                    }
+
+                    // Create an adapter for the spinner
+                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, subject)
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+                    // Set the adapter on the spinner
+                    Spinnerrrr.adapter = adapter
+                }
+            }
+
+        var SubjectSelected:String=""
+        Spinnerrrr.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                SubjectSelected=Spinnerrrr.selectedItem.toString()
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
 
 
 
