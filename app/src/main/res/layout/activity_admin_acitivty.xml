@@ -60,7 +60,7 @@
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#3B6004"
                         android:textStyle="bold"
                         android:text="Enter Admin Username:" />
 
@@ -70,7 +70,9 @@
                         android:layout_height="54dp"
                         android:background="@drawable/textbox"
                         android:ems="10"
-                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:hint="Valid Username"
+                        android:textColor="@color/black"
                         android:inputType="text" />
 
                     <TextView
@@ -78,7 +80,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#3B6004"
                         android:textStyle="bold"
                         android:textSize="20dp"
 
@@ -90,7 +92,9 @@
                         android:layout_height="54dp"
                         android:background="@drawable/textbox"
                         android:ems="10"
-                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:hint="Valid Password"
+                        android:textColor="@color/black"
                         android:inputType="textPassword" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -99,9 +103,9 @@
                         android:layout_height="63dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="80dp"
-                        android:background="@drawable/btnstyle"
+                        android:background="@drawable/btnsubmitstyle"
                         android:text="Login"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
@@ -116,5 +120,6 @@
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#BAE719"
         android:layout_height="match_parent"/>
 </androidx.drawerlayout.widget.DrawerLayout>

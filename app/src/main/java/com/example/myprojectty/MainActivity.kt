@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
@@ -94,6 +95,7 @@ lateinit var toggle: ActionBarDrawerToggle
 
 
 
+
         //spinnername
         ClassSpinner = findViewById(R.id.spinner)
 
@@ -156,6 +158,16 @@ lateinit var toggle: ActionBarDrawerToggle
                     subject.add(document.get("Paper8").toString())
                     subject.add(document.get("Paper9").toString())
                     subject.add(document.get("Paper10").toString())
+                    subject.add(document.get("Paper11").toString())
+                    subject.add(document.get("Paper12").toString())
+                    subject.add(document.get("Paper13").toString())
+                    subject.add(document.get("Paper14").toString())
+                    subject.add(document.get("Paper15").toString())
+                    subject.add(document.get("Paper16").toString())
+                    subject.add(document.get("Paper17").toString())
+                    subject.add(document.get("Paper18").toString())
+                    subject.add(document.get("Paper19").toString())
+                    subject.add(document.get("Paper20").toString())
 
                 }
 
@@ -181,11 +193,7 @@ lateinit var toggle: ActionBarDrawerToggle
 
         }
 
-        val refreshBtn=findViewById<Button>(R.id.refrshBtn)
-        refreshBtn.setOnClickListener {
-            Toast.makeText(this, "Working...", Toast.LENGTH_SHORT).show()
-            getLocation()
-        }
+
 
 //https://youtu.be/w9lmmx8aYp4
         val calendar=Calendar.getInstance().time
@@ -223,7 +231,7 @@ lateinit var toggle: ActionBarDrawerToggle
 
 
 
-    private fun getLocation() {
+    /*private fun getLocation() {
             if (ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)
                 !=PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -243,7 +251,38 @@ lateinit var toggle: ActionBarDrawerToggle
                 Toast.makeText(this, "current latitude:$latitude & altitude $altitude", Toast.LENGTH_SHORT).show()
             }
         }
+    }*/
+
+    private var backPressedCount=0
+    override fun onBackPressed() {
+       val drawerLayout:DrawerLayout=findViewById(R.id.mainDrawer)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            if (backPressedCount==0){
+                showExitConfirmationDialog()
+            }else{
+                super.onBackPressed()
+            }
+        }
     }
+
+    private fun showExitConfirmationDialog() {
+        val builder=AlertDialog.Builder(this)
+        builder.setTitle("Exit Confirmation")
+        builder.setMessage("Are you sure you want to exit ?")
+        builder.setPositiveButton("Yes"){ _,_->
+            finishAffinity()
+        }
+        builder.setNegativeButton("NO"){dialog,_->
+            dialog.dismiss()
+            backPressedCount=0
+        }
+        val dialog=builder.create()
+        dialog.show()
+    }
+
+
 
 
     private fun LogOutUser() {
@@ -254,8 +293,7 @@ lateinit var toggle: ActionBarDrawerToggle
     }
 
     private fun Home(){
-        val intent=Intent(this,MainActivity::class.java)
-        startActivity(intent)
+        Toast.makeText(this, "Already in", Toast.LENGTH_SHORT).show()
     }
     private fun Attendance(){
         val intent=Intent(this,Attendance::class.java)

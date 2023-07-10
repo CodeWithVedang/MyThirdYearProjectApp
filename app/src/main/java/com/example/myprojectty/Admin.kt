@@ -84,7 +84,7 @@ class Admin : AppCompatActivity() {
         SpinnerForSubject=findViewById(R.id.spinnerOfadminSubject)
 
         SpinnerForPaper=findViewById(R.id.spinnerOfadminPaper)
-        val paper= arrayOf("Paper1","Paper2","Paper3","Paper4","Paper5","Paper6","Paper7","Paper8","Paper9","Paper10")
+        val paper= arrayOf("Paper1","Paper2","Paper3","Paper4","Paper5","Paper6","Paper7","Paper8","Paper9","Paper10","Paper11","Paper12","Paper13","Paper14","Paper15","Paper16","Paper17","Paper18","Paper19","Paper20")
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, paper)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         SpinnerForPaper.adapter = adapter1

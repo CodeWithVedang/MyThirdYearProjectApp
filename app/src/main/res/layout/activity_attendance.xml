@@ -33,9 +33,9 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="385dp"
-            android:layout_height="651dp"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="655dp"
             android:layout_marginTop="11dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,72 @@
             app:layout_constraintVertical_bias="0.0">
 
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Enter Roll Number :"
+                    android:textColor="#3B6004"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bgtextbox"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Select Class :"
+                    android:textColor="#3B6004"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/classSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_spinner"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Select Subject:"
+                    android:textColor="#3B6004"
+                    android:textSize="25dp"
+
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/subjectSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_spinner"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/submitdata"
+                    android:layout_width="190dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="20dp"
+                   android:layout_gravity="center"
+                    android:background="@drawable/btnsubmitstyle"
+                    android:text="view"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,5 +122,6 @@
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#BAE719"
         android:layout_height="match_parent"/>
 </androidx.drawerlayout.widget.DrawerLayout>

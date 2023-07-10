@@ -4,10 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -15,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
@@ -26,9 +25,13 @@ class Attendance : AppCompatActivity() {
     private lateinit var DateView: TextView
     private lateinit var calendar: Calendar
     private lateinit var auth : FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    lateinit var ClassSpinner:Spinner
+    lateinit var Spinnerrrr:Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance)
+        auth = FirebaseAuth.getInstance()
         val navView: NavigationView =findViewById(R.id.nav_view)
         drawerLayout=findViewById(R.id.mainDrawer)
         val toolbar=findViewById<Toolbar>(R.id.appBar)
@@ -72,7 +75,42 @@ class Attendance : AppCompatActivity() {
             }
             true
         }
+        ClassSpinner = findViewById(R.id.classSpinner)
 
+        db = FirebaseFirestore.getInstance()
+
+        // Get the data from Firestore
+        db.collection("Class").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var classss = mutableListOf<String>()    //list
+                for (document in task.result) {
+                    classss.add(document.get("FY").toString())
+                    classss.add(document.get("SY").toString())
+                    classss.add(document.get("TY").toString())
+
+                }
+
+                // Create an adapter for the spinner
+                val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, classss)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+                // Set the adapter on the spinner
+                ClassSpinner.adapter = adapter
+            }
+
+        }
+        var classDatat = ""
+        ClassSpinner.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                classDatat=ClassSpinner.selectedItem.toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
 
 
 

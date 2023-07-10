@@ -56,7 +56,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black"
+                        android:textColor="#3B6004"
                         android:textStyle="bold"
                         android:textSize="20dp"
                         android:text="Select Paper No. and Enter Subject:" />
@@ -74,15 +74,16 @@
 
                     <EditText
                         android:id="@+id/subjectAdmin"
-                        android:paddingLeft="20dp"
+
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
                         android:background="@drawable/textbox"
                         android:ems="10"
-
+                        android:paddingLeft="20dp"
+                        android:hint="Subject"
                         android:textAlignment="center"
                         android:layout_marginTop="20dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:inputType="text" />
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/updateSubject"
@@ -90,15 +91,15 @@
                         android:layout_height="63dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="80dp"
-                        android:background="@drawable/btnstyle"
+                        android:background="@drawable/btnsubmitstyle"
                         android:text="Update Subject"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/sdfs"
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black"
+                        android:textColor="#3B6004"
                         android:textStyle="bold"
                         android:textSize="20dp"
                         android:text="Select Year and Update Class :" />
@@ -120,8 +121,10 @@
                         android:layout_marginTop="20dp"
                         android:background="@drawable/textbox"
                         android:ems="10"
+
+                        android:hint="Class"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:inputType="text" />
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/updateClass"
@@ -129,9 +132,9 @@
                         android:layout_height="63dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="80dp"
-                        android:background="@drawable/btnstyle"
+                        android:background="@drawable/btnsubmitstyle"
                         android:text="Update class"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
@@ -148,5 +151,6 @@
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#BAE719"
         android:layout_height="match_parent"/>
 </androidx.drawerlayout.widget.DrawerLayout>

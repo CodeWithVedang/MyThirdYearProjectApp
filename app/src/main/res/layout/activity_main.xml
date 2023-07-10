@@ -42,6 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
+
             app:layout_constraintTop_toTopOf="@+id/appBarLayout">
 
 
@@ -61,24 +62,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="Select Class :"
-                    android:textColor="@color/black"
+                    android:textColor="#3B6004"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="100dp"
+
                         android:background="@drawable/bg_spinner"
-
-
+                        android:textColor="@color/white"
                         android:textSize="25dp" />
                 </LinearLayout>
 
@@ -86,10 +88,8 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="415dp"
-            android:layout_height="83dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="411dp"
+            android:layout_height="91dp"
             android:layout_weight="1"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,52 +97,11 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <TextView
-                android:id="@+id/textgh2"
-                android:layout_width="347dp"
-                android:layout_height="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
-
-                android:text="Check Location :"
-                android:textColor="@color/black"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/refrshBtn"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-
-                    android:layout_marginLeft="130dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bckkk"
-                    android:text="" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="411dp"
-            android:layout_height="91dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:text="submit attendance:"
-                android:textColor="@color/black"
+                android:textColor="#3B6004"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -153,12 +112,12 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="104dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/btnstyle"
                     android:id="@+id/SubMitBtn"
-                    android:textColor="@color/white"
-                    android:text="submit" />
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btnsubmitstyle"
+                    android:text="submit"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
         </LinearLayout>
@@ -175,16 +134,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/Spinnerrrr"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="100dp"
-                    android:background="@drawable/bg_spinner"
 
+                    android:background="@drawable/bg_spinner"
+                    android:textColor="@color/white"
 
                     android:textSize="25dp" />
 
@@ -209,7 +170,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Select Subject :"
-                android:textColor="@color/black"
+                android:textColor="#3B6004"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -227,5 +188,7 @@
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#BAE719"
+
         android:layout_height="match_parent"/>
 </androidx.drawerlayout.widget.DrawerLayout>

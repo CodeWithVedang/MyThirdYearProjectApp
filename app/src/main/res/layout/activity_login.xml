@@ -41,8 +41,8 @@
             android:ems="10"
             android:hint="Valid Email "
             android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.572"
@@ -72,8 +72,9 @@
             android:ems="10"
             android:hint="Valid Roll Number"
             android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.572"
@@ -97,6 +98,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordLayout"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true">
         <EditText
@@ -108,7 +110,7 @@
             android:hint="Valid Password"
             android:inputType="textPassword"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.572"
