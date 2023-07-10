@@ -79,7 +79,7 @@ class AttendanceRecordActivity : AppCompatActivity() {
         }
         val RollNumberr =intent.getStringExtra("rollnumber").toString()
         val textroll=findViewById<TextView>(R.id.RolllText)
-      textroll.text=RollNumberr
+      textroll.text="Hey "+RollNumberr+" !!"
     }
 
 
