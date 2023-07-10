@@ -167,6 +167,18 @@ class Attendance : AppCompatActivity() {
         }
 
 
+val viewbtn=findViewById<Button>(R.id.submitdata)
+
+        viewbtn.setOnClickListener {
+            val rollNum=findViewById<EditText>(R.id.rollNumber)
+            val InputRoll=rollNum.text.toString()
+            val intent=Intent(this,AttendanceRecordActivity::class.java).putExtra("class",classDatat)
+                .putExtra("subject",SubjectSelected)
+                .putExtra("rollnumber",InputRoll)
+            startActivity(intent)
+
+        }
+
 
 
 
