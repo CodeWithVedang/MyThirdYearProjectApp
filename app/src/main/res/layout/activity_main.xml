@@ -146,7 +146,7 @@
 
                     android:background="@drawable/bg_spinner"
                     android:textColor="@color/white"
-
+                    android:paddingLeft="25dp"
                     android:textSize="25dp" />
 
             </LinearLayout>

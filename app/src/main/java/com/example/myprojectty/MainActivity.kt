@@ -92,8 +92,11 @@ lateinit var toggle: ActionBarDrawerToggle
         }
 
 
+ /* val NameOFUser=findViewById<TextView>(R.id.NameOfuser)
 
-
+        val emailPass =intent.getStringExtra("EmailLgn").toString()
+        NameOFUser.text=emailPass
+*/
 
 
         //spinnername

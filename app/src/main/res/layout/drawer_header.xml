@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#284200"
+    android:background="#243903"
     android:padding="16dp"
     android:layout_height="match_parent">
 
@@ -16,6 +16,7 @@
         />
 
     <TextView
+        android:id="@+id/NameOfuser"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
