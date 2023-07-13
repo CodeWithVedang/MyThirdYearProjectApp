@@ -12,12 +12,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AttendanceRecordActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -30,6 +35,12 @@ class AttendanceRecordActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     lateinit var ClassSpinner: Spinner
     lateinit var Spinnerrrr: Spinner
+
+
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var userList: ArrayList<fetchdataclassuser>
+    private  var dbb=Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance_record)
@@ -78,8 +89,38 @@ class AttendanceRecordActivity : AppCompatActivity() {
             true
         }
         val RollNumberr =intent.getStringExtra("rollnumber").toString()
+        val classs =intent.getStringExtra("class").toString()
+        val subject =intent.getStringExtra("subject").toString()
         val textroll=findViewById<TextView>(R.id.RolllText)
         textroll.text="Hey "+RollNumberr+" !!"
+
+
+        recyclerView=findViewById(R.id.recyclerview)
+
+        userList = arrayListOf()
+        dbb= FirebaseFirestore.getInstance()
+        dbb.collection("Attendance").document(classs).collection(subject).document(RollNumberr).collection(RollNumberr).get()
+            .addOnSuccessListener {
+              if(!it.isEmpty){
+                  for (data in it.documents){
+                      val user: fetchdataclassuser? = data.toObject(fetchdataclassuser::class.java)
+                      if (user != null ) {
+                          userList.add(user)
+                      }
+                  }
+                  recyclerView.adapter=MyAdapter(userList)
+                  recyclerView.layoutManager=LinearLayoutManager(this)
+
+              }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,"failed to retrive !"+it.toString() , Toast.LENGTH_SHORT).show()
+            }
+
+
+
+
+
     }
 
 

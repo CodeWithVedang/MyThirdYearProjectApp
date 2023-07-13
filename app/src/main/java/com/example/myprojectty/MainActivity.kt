@@ -215,7 +215,7 @@ lateinit var toggle: ActionBarDrawerToggle
         SubmitBtn.setOnClickListener {
 
             val Email =intent.getStringExtra("EmailLgn").toString()
-            db.collection("Attendance").document(classDatat).collection(SubjectSelected).document(Email).collection(date).document(date).set(DataHash)
+            db.collection("Attendance").document(classDatat).collection(SubjectSelected).document(Email).collection(Email).document(date).set(DataHash)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
                     Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()
