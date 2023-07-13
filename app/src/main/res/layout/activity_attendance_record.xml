@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
 
                 android:gravity="center"
-                android:textColor="#1C6C06"
+                android:textColor="#005115"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
