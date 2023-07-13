@@ -61,7 +61,39 @@ class Admin : AppCompatActivity() {
 
                 }
                 R.id.shareL-> {
-
+                    val intent=Intent()
+                    intent.action=Intent.ACTION_SEND
+                    intent.putExtra(Intent.EXTRA_TEXT,
+                        "\"\uD83D\uDCE2 Hey there! \uD83D\uDCDA\uD83D\uDCDD\n" +
+                                "\n" +
+                                "I'm excited to share a fantastic new app with you! \uD83C\uDF89\uD83D\uDCF1 It's called the Student Attendance App, and it's designed to simplify attendance management for students. \uD83D\uDCCA✏️\n" +
+                                "\n" +
+                                "To get started, simply click the download button below and join the attendance revolution! ⬇️\uD83D\uDCBB\n" +
+                                "\n" +
+                                "\uD83D\uDCE5 [Download Now] \uD83D\uDCE5\n" +
+                                " \uD83D\uDC49 bit.ly/getourappnow-std\n" +
+                                "\n" +
+                                "With this app, you'll be able to effortlessly track your attendance, stay organized, and never miss a class again! \uD83D\uDCC5\uD83D\uDC69\u200D\uD83C\uDFEB✅\n" +
+                                "\n" +
+                                "Here are some awesome features it offers:\n" +
+                                "\n" +
+                                "\uD83D\uDCCC Easy attendance management: Mark your presence in a few taps.\n" +
+                                "\uD83D\uDCCC Timely reminders: Receive notifications for upcoming classes.\n" +
+                                "\uD83D\uDCCC Detailed insights: Get attendance reports and monitor your progress.\n" +
+                                "\uD83D\uDCCC Customizable settings: Personalize the app to suit your needs.\n" +
+                                "\uD83D\uDCCC User-friendly interface: Enjoy a seamless and intuitive experience.\n" +
+                                "\n" +
+                                "So, why wait? Grab your phone and download the Student Attendance App now! \uD83D\uDD25\uD83D\uDCF2\n" +
+                                "\n" +
+                                "Share this message with your friends and classmates, and let's revolutionize the way we manage attendance together! \uD83E\uDD1D✨\n" +
+                                "\n" +
+                                "If you have any questions or need assistance, feel free to reach out. Enjoy the app and happy attending! \uD83D\uDE0A\uD83C\uDF93\n" +
+                                "\n" +
+                                "Best regards,\n" +
+                                "Vedang Shelatkar(GJC BSC.TYCS)\""
+                    )
+                    intent.type="text/plain"
+                    startActivity(Intent.createChooser(intent,"Share this App to"))
                     Toast.makeText(applicationContext, "Sharing...", Toast.LENGTH_SHORT).show()
                 }
                 R.id.AttendanceL->{
@@ -78,7 +110,7 @@ class Admin : AppCompatActivity() {
                 }
                 R.id.DownloadNow-> {
                     val openDownloadurl=Intent(android.content.Intent.ACTION_VIEW)
-                    openDownloadurl.data= Uri.parse("https://download940.mediafire.com/7rz3q1xqxjngllQvjjUE3tL6q1vUOeFAfpdsyAYTAdsDGrg6Pt2M3wt_jjbS3TETmVP4w8ZUrYJwRJlFMq2ZRDJLtq5l9JUZpgIDmDiKcajwcJECqNY1qsG1hznf58OhPdKpzExaeHgtnGgFy3uoC0R7fI-RsejninW8e-_YOrLpBg/84g0a17f7pc3cq0/app-debug.apk")
+                    openDownloadurl.data= Uri.parse("https://drive.google.com/drive/folders/1rW_whvH33uvMVbKKkbVgDBjkwx-8ZejW")
                     startActivity(openDownloadurl)
                     Toast.makeText(this, "Redirecting", Toast.LENGTH_SHORT).show()
                 }
