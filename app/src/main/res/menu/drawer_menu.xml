@@ -15,4 +15,7 @@
     <item android:title="Admin" android:icon="@drawable/baseline_person_24"
         
         android:id="@+id/Admin"/>
+    <item android:title="Download Latest Version" android:icon="@drawable/baseline_arrow_circle_down_24"
+
+        android:id="@+id/DownloadNow"/>
 </menu>

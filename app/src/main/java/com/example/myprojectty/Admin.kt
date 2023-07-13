@@ -76,6 +76,12 @@ class Admin : AppCompatActivity() {
                     Admin()
                     Toast.makeText(this, "Already In !!", Toast.LENGTH_SHORT).show()
                 }
+                R.id.DownloadNow-> {
+                    val openDownloadurl=Intent(android.content.Intent.ACTION_VIEW)
+                    openDownloadurl.data= Uri.parse("https://download940.mediafire.com/7rz3q1xqxjngllQvjjUE3tL6q1vUOeFAfpdsyAYTAdsDGrg6Pt2M3wt_jjbS3TETmVP4w8ZUrYJwRJlFMq2ZRDJLtq5l9JUZpgIDmDiKcajwcJECqNY1qsG1hznf58OhPdKpzExaeHgtnGgFy3uoC0R7fI-RsejninW8e-_YOrLpBg/84g0a17f7pc3cq0/app-debug.apk")
+                    startActivity(openDownloadurl)
+                    Toast.makeText(this, "Redirecting", Toast.LENGTH_SHORT).show()
+                }
             }
             true
         }
