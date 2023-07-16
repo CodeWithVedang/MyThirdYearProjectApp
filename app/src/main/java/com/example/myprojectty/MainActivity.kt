@@ -235,6 +235,9 @@ lateinit var toggle: ActionBarDrawerToggle
         }
 
 
+  val Cuser= auth.currentUser?.email.toString()
+        Toast.makeText(this, "Logged in as $Cuser", Toast.LENGTH_LONG).show()
+
 
 //https://youtu.be/w9lmmx8aYp4
         val calendar=Calendar.getInstance().time
@@ -253,7 +256,7 @@ lateinit var toggle: ActionBarDrawerToggle
         SubmitBtn.setOnClickListener {
 
             val Email =intent.getStringExtra("EmailLgn").toString()
-            db.collection("Attendance").document(classDatat).collection(SubjectSelected).document(Email).collection(Email).document(date).set(DataHash)
+            db.collection("Attendance").document(classDatat).collection(SubjectSelected).document(Cuser).collection(Cuser).document(date).set(DataHash)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
                     Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()

@@ -108,12 +108,12 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-   /* override fun onStart() {
+   override fun onStart() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser!=null){
             val intent=Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-    }*/
+    }
 
 }
