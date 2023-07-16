@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:text="Enter Roll Number :"
+                    android:text="Enter Email :"
                     android:textColor="#3B6004"
                     android:textSize="25dp"
                     android:textStyle="bold" />

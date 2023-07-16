@@ -29,99 +29,101 @@ import java.text.DateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-lateinit var drawerLayout: DrawerLayout
-lateinit var ClassSpinner:Spinner
-lateinit var Spinnerrrr:Spinner
-lateinit var classesssssss:String
-lateinit var  Subjectttt:String
-private lateinit var db: FirebaseFirestore
-private lateinit var fusedLocationProviderClient: FusedLocationProviderClient  ///lcoation///
-lateinit var adapter: ArrayAdapter<String>
-lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var DateView:TextView
-    private lateinit var calendar:Calendar
-    private lateinit var auth : FirebaseAuth
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var ClassSpinner: Spinner
+    lateinit var Spinnerrrr: Spinner
+    lateinit var classesssssss: String
+    lateinit var Subjectttt: String
+    private lateinit var db: FirebaseFirestore
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient  ///lcoation///
+    lateinit var adapter: ArrayAdapter<String>
+    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var DateView: TextView
+    private lateinit var calendar: Calendar
+    private lateinit var auth: FirebaseAuth
     private lateinit var rollll: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = FirebaseAuth.getInstance()
 
-        val navView:NavigationView=findViewById(R.id.nav_view)
-        drawerLayout=findViewById(R.id.mainDrawer)
-        val toolbar=findViewById<Toolbar>(R.id.appBar)
-        toolbar.setNavigationOnClickListener{
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        drawerLayout = findViewById(R.id.mainDrawer)
+        val toolbar = findViewById<Toolbar>(R.id.appBar)
+        toolbar.setNavigationOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        toggle=ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.HomeL-> {
+            when (it.itemId) {
+                R.id.HomeL -> {
                     Home()
                     Toast.makeText(applicationContext, "Home", Toast.LENGTH_SHORT).show()
                 }
 
-                R.id.FeedbackL-> {
-                    val openUrl=Intent(android.content.Intent.ACTION_VIEW)
-                    openUrl.data= Uri.parse("https://forms.gle/ahAVADMCKFuetYqx6")
+                R.id.FeedbackL -> {
+                    val openUrl = Intent(android.content.Intent.ACTION_VIEW)
+                    openUrl.data = Uri.parse("https://forms.gle/ahAVADMCKFuetYqx6")
                     startActivity(openUrl)
                     Toast.makeText(applicationContext, "Opening...", Toast.LENGTH_SHORT).show()
                 }
-                R.id.shareL-> {
-                        val intent=Intent()
-                    intent.action=Intent.ACTION_SEND
-                    intent.putExtra(Intent.EXTRA_TEXT,
-                    "\"\uD83D\uDCE2 Hey there! \uD83D\uDCDA\uD83D\uDCDD\n" +
-                            "\n" +
-                            "I'm excited to share a fantastic new app with you! \uD83C\uDF89\uD83D\uDCF1 It's called the Student Attendance App, and it's designed to simplify attendance management for students. \uD83D\uDCCA✏️\n" +
-                            "\n" +
-                            "To get started, simply click the download button below and join the attendance revolution! ⬇️\uD83D\uDCBB\n" +
-                            "\n" +
-                            "\uD83D\uDCE5 [Download Now] \uD83D\uDCE5\n" +
-                            " \uD83D\uDC49 bit.ly/getourappnow-std\n" +
-                            "\n" +
-                            "With this app, you'll be able to effortlessly track your attendance, stay organized, and never miss a class again! \uD83D\uDCC5\uD83D\uDC69\u200D\uD83C\uDFEB✅\n" +
-                            "\n" +
-                            "Here are some awesome features it offers:\n" +
-                            "\n" +
-                            "\uD83D\uDCCC Easy attendance management: Mark your presence in a few taps.\n" +
-                            "\uD83D\uDCCC Timely reminders: Receive notifications for upcoming classes.\n" +
-                            "\uD83D\uDCCC Detailed insights: Get attendance reports and monitor your progress.\n" +
-                            "\uD83D\uDCCC Customizable settings: Personalize the app to suit your needs.\n" +
-                            "\uD83D\uDCCC User-friendly interface: Enjoy a seamless and intuitive experience.\n" +
-                            "\n" +
-                            "So, why wait? Grab your phone and download the Student Attendance App now! \uD83D\uDD25\uD83D\uDCF2\n" +
-                            "\n" +
-                            "Share this message with your friends and classmates, and let's revolutionize the way we manage attendance together! \uD83E\uDD1D✨\n" +
-                            "\n" +
-                            "If you have any questions or need assistance, feel free to reach out. Enjoy the app and happy attending! \uD83D\uDE0A\uD83C\uDF93\n" +
-                            "\n" +
-                            "Best regards,\n" +
-                            "Vedang Shelatkar(GJC BSC.TYCS)\""
-                        )
-                    intent.type="text/plain"
-                    startActivity(Intent.createChooser(intent,"Share this App to"))
+                R.id.shareL -> {
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_SEND
+                    intent.putExtra(
+                        Intent.EXTRA_TEXT,
+                        "\"\uD83D\uDCE2 Hey there! \uD83D\uDCDA\uD83D\uDCDD\n" +
+                                "\n" +
+                                "I'm excited to share a fantastic new app with you! \uD83C\uDF89\uD83D\uDCF1 It's called the Student Attendance App, and it's designed to simplify attendance management for students. \uD83D\uDCCA✏️\n" +
+                                "\n" +
+                                "To get started, simply click the download button below and join the attendance revolution! ⬇️\uD83D\uDCBB\n" +
+                                "\n" +
+                                "\uD83D\uDCE5 [Download Now] \uD83D\uDCE5\n" +
+                                " \uD83D\uDC49 bit.ly/getourappnow-std\n" +
+                                "\n" +
+                                "With this app, you'll be able to effortlessly track your attendance, stay organized, and never miss a class again! \uD83D\uDCC5\uD83D\uDC69\u200D\uD83C\uDFEB✅\n" +
+                                "\n" +
+                                "Here are some awesome features it offers:\n" +
+                                "\n" +
+                                "\uD83D\uDCCC Easy attendance management: Mark your presence in a few taps.\n" +
+                                "\uD83D\uDCCC Timely reminders: Receive notifications for upcoming classes.\n" +
+                                "\uD83D\uDCCC Detailed insights: Get attendance reports and monitor your progress.\n" +
+                                "\uD83D\uDCCC Customizable settings: Personalize the app to suit your needs.\n" +
+                                "\uD83D\uDCCC User-friendly interface: Enjoy a seamless and intuitive experience.\n" +
+                                "\n" +
+                                "So, why wait? Grab your phone and download the Student Attendance App now! \uD83D\uDD25\uD83D\uDCF2\n" +
+                                "\n" +
+                                "Share this message with your friends and classmates, and let's revolutionize the way we manage attendance together! \uD83E\uDD1D✨\n" +
+                                "\n" +
+                                "If you have any questions or need assistance, feel free to reach out. Enjoy the app and happy attending! \uD83D\uDE0A\uD83C\uDF93\n" +
+                                "\n" +
+                                "Best regards,\n" +
+                                "Vedang Shelatkar(GJC BSC.TYCS)\""
+                    )
+                    intent.type = "text/plain"
+                    startActivity(Intent.createChooser(intent, "Share this App to"))
 
                     Toast.makeText(applicationContext, "Sharing...", Toast.LENGTH_SHORT).show()
                 }
-                R.id.AttendanceL->{
+                R.id.AttendanceL -> {
                     Attendance()
                     Toast.makeText(this, "Opening...", Toast.LENGTH_SHORT).show()
                 }
-                R.id.LogoutL-> {
+                R.id.LogoutL -> {
                     LogOutUser()
                     Toast.makeText(this, "Logging Out...", Toast.LENGTH_SHORT).show()
                 }
-                R.id.Admin-> {
+                R.id.Admin -> {
                     Admin()
                     Toast.makeText(this, "Opening...", Toast.LENGTH_SHORT).show()
                 }
-                R.id.DownloadNow-> {
-                    val openDownloadurl=Intent(android.content.Intent.ACTION_VIEW)
-                    openDownloadurl.data= Uri.parse("https://drive.google.com/drive/folders/1rW_whvH33uvMVbKKkbVgDBjkwx-8ZejW")
+                R.id.DownloadNow -> {
+                    val openDownloadurl = Intent(android.content.Intent.ACTION_VIEW)
+                    openDownloadurl.data =
+                        Uri.parse("https://drive.google.com/drive/folders/1rW_whvH33uvMVbKKkbVgDBjkwx-8ZejW")
                     startActivity(openDownloadurl)
                     Toast.makeText(this, "Redirecting", Toast.LENGTH_SHORT).show()
                 }
@@ -130,11 +132,11 @@ lateinit var toggle: ActionBarDrawerToggle
         }
 
 
- /* val NameOFUser=findViewById<TextView>(R.id.NameOfuser)
+        /* val NameOFUser=findViewById<TextView>(R.id.NameOfuser)
 
-        val emailPass =intent.getStringExtra("EmailLgn").toString()
-        NameOFUser.text=emailPass
-*/
+               val emailPass =intent.getStringExtra("EmailLgn").toString()
+               NameOFUser.text=emailPass
+       */
 
 
         //spinnername
@@ -147,8 +149,8 @@ lateinit var toggle: ActionBarDrawerToggle
             if (task.isSuccessful) {
                 var classss = mutableListOf<String>()    //list
                 for (document in task.result) {
-                   classss.add(document.get("FY").toString())
-                     classss.add(document.get("SY").toString())
+                    classss.add(document.get("FY").toString())
+                    classss.add(document.get("SY").toString())
                     classss.add(document.get("TY").toString())
 
                 }
@@ -163,10 +165,10 @@ lateinit var toggle: ActionBarDrawerToggle
 
         }
         var classDatat = ""
-        ClassSpinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+        ClassSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-                classDatat=ClassSpinner.selectedItem.toString()
+                classDatat = ClassSpinner.selectedItem.toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -186,45 +188,45 @@ lateinit var toggle: ActionBarDrawerToggle
         // Get the data from Firestore
         db.collection("subject").get()
             .addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val subject = mutableListOf<String>()
-                for (document in task.result) {
-                    subject.add(document.get("Paper1").toString())
-                    subject.add(document.get("Paper2").toString())
-                    subject.add(document.get("Paper3").toString())
-                    subject.add(document.get("Paper4").toString())
-                    subject.add(document.get("Paper5").toString())
-                    subject.add(document.get("Paper6").toString())
-                    subject.add(document.get("Paper7").toString())
-                    subject.add(document.get("Paper8").toString())
-                    subject.add(document.get("Paper9").toString())
-                    subject.add(document.get("Paper10").toString())
-                    subject.add(document.get("Paper11").toString())
-                    subject.add(document.get("Paper12").toString())
-                    subject.add(document.get("Paper13").toString())
-                    subject.add(document.get("Paper14").toString())
-                    subject.add(document.get("Paper15").toString())
-                    subject.add(document.get("Paper16").toString())
-                    subject.add(document.get("Paper17").toString())
-                    subject.add(document.get("Paper18").toString())
-                    subject.add(document.get("Paper19").toString())
-                    subject.add(document.get("Paper20").toString())
+                if (task.isSuccessful) {
+                    val subject = mutableListOf<String>()
+                    for (document in task.result) {
+                        subject.add(document.get("Paper1").toString())
+                        subject.add(document.get("Paper2").toString())
+                        subject.add(document.get("Paper3").toString())
+                        subject.add(document.get("Paper4").toString())
+                        subject.add(document.get("Paper5").toString())
+                        subject.add(document.get("Paper6").toString())
+                        subject.add(document.get("Paper7").toString())
+                        subject.add(document.get("Paper8").toString())
+                        subject.add(document.get("Paper9").toString())
+                        subject.add(document.get("Paper10").toString())
+                        subject.add(document.get("Paper11").toString())
+                        subject.add(document.get("Paper12").toString())
+                        subject.add(document.get("Paper13").toString())
+                        subject.add(document.get("Paper14").toString())
+                        subject.add(document.get("Paper15").toString())
+                        subject.add(document.get("Paper16").toString())
+                        subject.add(document.get("Paper17").toString())
+                        subject.add(document.get("Paper18").toString())
+                        subject.add(document.get("Paper19").toString())
+                        subject.add(document.get("Paper20").toString())
 
+                    }
+
+                    // Create an adapter for the spinner
+                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, subject)
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+                    // Set the adapter on the spinner
+                    Spinnerrrr.adapter = adapter
                 }
-
-                // Create an adapter for the spinner
-                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, subject)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-                // Set the adapter on the spinner
-                Spinnerrrr.adapter = adapter
             }
-        }
 
-       var SubjectSelected:String=""
-        Spinnerrrr.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+        var SubjectSelected: String = ""
+        Spinnerrrr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                SubjectSelected=Spinnerrrr.selectedItem.toString()
+                SubjectSelected = Spinnerrrr.selectedItem.toString()
 
             }
 
@@ -235,28 +237,29 @@ lateinit var toggle: ActionBarDrawerToggle
         }
 
 
-  val Cuser= auth.currentUser?.email.toString()
+        val Cuser = auth.currentUser?.email.toString()
         Toast.makeText(this, "Logged in as $Cuser", Toast.LENGTH_LONG).show()
 
 
 //https://youtu.be/w9lmmx8aYp4
-        val calendar=Calendar.getInstance().time
-        val dateFormat=DateFormat.getDateInstance(DateFormat.LONG).format(calendar)
-        val timeFormat=DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar)
+        val calendar = Calendar.getInstance().time
+        val dateFormat = DateFormat.getDateInstance(DateFormat.LONG).format(calendar)
+        val timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar)
 
-        val date=dateFormat.toString().trim()
-        val time=timeFormat.toString()
-        val DataHash= hashMapOf(
+        val date = dateFormat.toString().trim()
+        val time = timeFormat.toString()
+        val DataHash = hashMapOf(
             "Date" to date,
             "Time" to time,
 
-        )
+            )
 
-        val SubmitBtn=findViewById<Button>(R.id.SubMitBtn)
+        val SubmitBtn = findViewById<Button>(R.id.SubMitBtn)
         SubmitBtn.setOnClickListener {
 
-            val Email =intent.getStringExtra("EmailLgn").toString()
-            db.collection("Attendance").document(classDatat).collection(SubjectSelected).document(Cuser).collection(Cuser).document(date).set(DataHash)
+            val Email = intent.getStringExtra("EmailLgn").toString()
+            db.collection("Attendance").document(classDatat).collection(SubjectSelected)
+                .document(Cuser).collection(Cuser).document(date).set(DataHash)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
                     Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()
@@ -270,9 +273,8 @@ lateinit var toggle: ActionBarDrawerToggle
 
 
 
-        fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
     }//functions
-
 
 
     /*private fun getLocation() {
@@ -297,54 +299,54 @@ lateinit var toggle: ActionBarDrawerToggle
         }
     }*/
 
-    private var backPressedCount=0
+    private var backPressedCount = 0
     override fun onBackPressed() {
-       val drawerLayout:DrawerLayout=findViewById(R.id.mainDrawer)
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        val drawerLayout: DrawerLayout = findViewById(R.id.mainDrawer)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        }else{
-            if (backPressedCount==0){
+        } else {
+            if (backPressedCount == 0) {
                 showExitConfirmationDialog()
-            }else{
+            } else {
                 super.onBackPressed()
             }
         }
     }
 
     private fun showExitConfirmationDialog() {
-        val builder=AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this)
         builder.setTitle("Exit Confirmation")
         builder.setMessage("Are you sure you want to exit ?")
-        builder.setPositiveButton("Yes"){ _,_->
+        builder.setPositiveButton("Yes") { _, _ ->
             finishAffinity()
         }
-        builder.setNegativeButton("NO"){dialog,_->
+        builder.setNegativeButton("NO") { dialog, _ ->
             dialog.dismiss()
-            backPressedCount=0
+            backPressedCount = 0
         }
-        val dialog=builder.create()
+        val dialog = builder.create()
         dialog.show()
     }
 
 
-
-
     private fun LogOutUser() {
         Firebase.auth.signOut()
-        val intent=Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-    private fun Home(){
+    private fun Home() {
         Toast.makeText(this, "Already in", Toast.LENGTH_SHORT).show()
     }
-    private fun Attendance(){
-        val intent=Intent(this,Attendance::class.java)
+
+    private fun Attendance() {
+        val intent = Intent(this, Attendance::class.java)
         startActivity(intent)
     }
+
     private fun Admin() {
-        val intent=Intent(this,AdminAcitivty::class.java)
+        val intent = Intent(this, AdminAcitivty::class.java)
         startActivity(intent)
     }
 }
