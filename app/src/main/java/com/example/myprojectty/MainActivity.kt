@@ -236,7 +236,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
+        //get current user email
         val Cuser = auth.currentUser?.email.toString()
         Toast.makeText(this, "Logged in as $Cuser", Toast.LENGTH_LONG).show()
 
