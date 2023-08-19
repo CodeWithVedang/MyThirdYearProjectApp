@@ -136,7 +136,15 @@
                         android:text="Update class"
                         android:textColor="@color/black" />
 
-
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/GenrateQr"
+                        android:layout_width="230dp"
+                        android:layout_height="63dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="80dp"
+                        android:background="@drawable/btnsubmitstyle"
+                        android:text="Make QR Code for Attendance"
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

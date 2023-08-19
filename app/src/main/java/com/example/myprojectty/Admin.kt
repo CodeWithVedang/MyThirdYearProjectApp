@@ -118,7 +118,11 @@ class Admin : AppCompatActivity() {
             true
         }
 
-
+        val GenrateQr=findViewById<Button>(R.id.GenrateQr)
+        GenrateQr.setOnClickListener {
+            val nxtpg=Intent(this,QrGenrateActivity::class.java)
+            startActivity(nxtpg)
+        }
         SpinnerForSubject=findViewById(R.id.spinnerOfadminSubject)
 
         SpinnerForPaper=findViewById(R.id.spinnerOfadminPaper)

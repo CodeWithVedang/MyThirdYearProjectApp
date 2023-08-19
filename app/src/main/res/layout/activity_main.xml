@@ -88,8 +88,8 @@
         </ScrollView>
 
         <LinearLayout
-            android:layout_width="411dp"
-            android:layout_height="91dp"
+            android:layout_width="403dp"
+            android:layout_height="158dp"
             android:layout_weight="1"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,19 +105,31 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
+
             <LinearLayout
                 android:layout_width="301dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="130dp"
                 android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/Btn"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
 
+                    android:background="@drawable/btnsubmitstyle"
+                    android:text="Scan Qr"
+                    android:textColor="@color/black" />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/SubMitBtn"
                     android:layout_width="120dp"
+
+                    android:layout_marginTop="20dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/btnsubmitstyle"
                     android:text="submit"
                     android:textColor="@color/black" />
+
+
             </LinearLayout>
 
         </LinearLayout>

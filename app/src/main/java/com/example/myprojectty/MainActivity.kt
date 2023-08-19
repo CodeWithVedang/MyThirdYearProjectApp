@@ -1,5 +1,6 @@
 package com.example.myprojectty
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.zxing.integration.android.IntentIntegrator
 import java.text.DateFormat
 import java.util.*
 
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var calendar: Calendar
     private lateinit var auth: FirebaseAuth
     private lateinit var rollll: FirebaseAuth
+    lateinit var ResultText:String
+    lateinit var returnedText:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -130,7 +134,13 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
+        val Btn = findViewById<Button>(R.id.Btn)
+        Btn.setOnClickListener {
+            val scanner = IntentIntegrator(this)
+            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            scanner.setBeepEnabled(false)
+            scanner.initiateScan()
+        }
 
         /* val NameOFUser=findViewById<TextView>(R.id.NameOfuser)
 
@@ -253,17 +263,27 @@ class MainActivity : AppCompatActivity() {
             "Time" to time,
 
             )
-
+        val docRef = db.collection("QrString").document("Attendance")
+        docRef.get()
+            .addOnSuccessListener { document->
+                if(document!=null){
+                    returnedText=document.data!!["stringQr"].toString()
+                }
+            }
         val SubmitBtn = findViewById<Button>(R.id.SubMitBtn)
         SubmitBtn.setOnClickListener {
+            if (ResultText==returnedText){
+                val Email = intent.getStringExtra("EmailLgn").toString()
+                db.collection("Attendance").document(classDatat).collection(SubjectSelected)
+                    .document(Cuser).collection(Cuser).document(date).set(DataHash)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()
+                    }
 
-            val Email = intent.getStringExtra("EmailLgn").toString()
-            db.collection("Attendance").document(classDatat).collection(SubjectSelected)
-                .document(Cuser).collection(Cuser).document(date).set(DataHash)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()
-                }
+            }else{
+                Toast.makeText(this, "Failed due to some error", Toast.LENGTH_SHORT).show()
+            }
 
         }
 
@@ -326,6 +346,23 @@ class MainActivity : AppCompatActivity() {
         }
         val dialog = builder.create()
         dialog.show()
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    ResultText=result.contents.toString()
+                    Toast.makeText(this, "$ResultText", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 
 
