@@ -38,6 +38,8 @@
             android:layout_height="673dp"
             android:layout_marginTop="2dp"
             android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +51,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:fontFamily="casual"
+
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/SubjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="sdfsdffsdfg"
+                android:background="@drawable/textbox"
+                android:textColor="#4F9500"
+                android:fontFamily="casual"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -57,6 +72,7 @@
                 android:id="@+id/recyclerview"
                 android:layout_height="673dp"
                 android:padding="20dp"
+
                 tools:listitem="@layout/list_item"
                 android:paddingTop="20dp" />
         </LinearLayout>

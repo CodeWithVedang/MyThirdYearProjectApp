@@ -131,15 +131,19 @@ class AttendanceRecordActivity : AppCompatActivity() {
         val subject =intent.getStringExtra("subject").toString()
         val textroll=findViewById<TextView>(R.id.RolllText)
         textroll.text="Hey "+RollNumberr+" !!"
-
+        val SubjectName=findViewById<TextView>(R.id.SubjectName)
+        Toast.makeText(this, "$subject", Toast.LENGTH_SHORT).show()
+        SubjectName.text=subject
 
         recyclerView=findViewById(R.id.recyclerview)
 
         userList = arrayListOf()
         dbb= FirebaseFirestore.getInstance()
+
         dbb.collection("Attendance").document(classs).collection(subject).document(RollNumberr).collection(RollNumberr).get()
             .addOnSuccessListener {
               if(!it.isEmpty){
+
                   for (data in it.documents){
                       val user: fetchdataclassuser? = data.toObject(fetchdataclassuser::class.java)
                       if (user != null ) {

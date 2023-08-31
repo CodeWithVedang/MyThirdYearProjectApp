@@ -147,7 +147,17 @@ class MainActivity : AppCompatActivity() {
                val emailPass =intent.getStringExtra("EmailLgn").toString()
                NameOFUser.text=emailPass
        */
+val refreshBtn=findViewById<Button>(R.id.refreshBtn)
+        refreshBtn.setOnClickListener {
+            try {
+                recreate()
+                Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Refreshed !!", Toast.LENGTH_SHORT).show()
+            }catch (e: Exception){
+                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+            }
 
+        }
 
         //spinnername
         ClassSpinner = findViewById(R.id.spinner)
@@ -238,6 +248,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 SubjectSelected = Spinnerrrr.selectedItem.toString()
 
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -255,30 +266,38 @@ class MainActivity : AppCompatActivity() {
         val calendar = Calendar.getInstance().time
         val dateFormat = DateFormat.getDateInstance(DateFormat.LONG).format(calendar)
         val timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar)
-
         val date = dateFormat.toString().trim()
         val time = timeFormat.toString()
-        val DataHash = hashMapOf(
+
+        val dataHash = hashMapOf(
             "Date" to date,
             "Time" to time,
-
+            "SubjectName" to SubjectSelected
             )
         val docRef = db.collection("QrString").document("Attendance")
         docRef.get()
             .addOnSuccessListener { document->
                 if(document!=null){
                     returnedText=document.data!!["stringQr"].toString()
+                    Toast.makeText(this, "Required : $returnedText", Toast.LENGTH_SHORT).show()
                 }
+
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Check Network Connection", Toast.LENGTH_SHORT).show()
             }
         val SubmitBtn = findViewById<Button>(R.id.SubMitBtn)
         SubmitBtn.setOnClickListener {
             if (ResultText==returnedText){
                 val Email = intent.getStringExtra("EmailLgn").toString()
                 db.collection("Attendance").document(classDatat).collection(SubjectSelected)
-                    .document(Cuser).collection(Cuser).document(date).set(DataHash)
+                    .document(Cuser).collection(Cuser).document(date).set(dataHash)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, "Date :$date & Time :$time", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Date :$date & Time :$time $SubjectSelected", Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "failed !", Toast.LENGTH_SHORT).show()
                     }
 
             }else{
@@ -297,27 +316,7 @@ class MainActivity : AppCompatActivity() {
     }//functions
 
 
-    /*private fun getLocation() {
-            if (ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION ),100)
-                return
 
-        }
-        val locationn=fusedLocationProviderClient.lastLocation
-        locationn.addOnSuccessListener {
-            if (it!=null){
-                it.latitude.toString()
-                it.altitude.toString()
-
-                val latitude=it.latitude.toString()
-                val altitude=it.altitude.toString()
-                Toast.makeText(this, "current latitude:$latitude & altitude $altitude", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 
     private var backPressedCount = 0
     override fun onBackPressed() {
