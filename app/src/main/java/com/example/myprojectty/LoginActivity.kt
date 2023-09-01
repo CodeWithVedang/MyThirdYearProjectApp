@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var RollNumber:EditText
     private var db=Firebase.firestore
+    private lateinit var emailEditText: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,12 +35,18 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
             performLogin()
 
-
+        }
+        val ResetPass=findViewById<TextView>(R.id.ResetPass)
+        ResetPass.setOnClickListener {
+            performResetPass()
         }
 
     }
 
-
+    private fun performResetPass() {
+        val intent=Intent(this,ResetPass::class.java)
+        startActivity(intent)
+    }
 
 
     private fun performLogin() {
